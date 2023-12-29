@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const User = require("../../models/user");
 
-const deleteUser = async (req, res) => {
+const deleteUsers = async (req, res) => {
     const { allUserIds } = req.body;
     await User.deleteMany({ _id: { $in: allUserIds } });
 
@@ -10,4 +10,4 @@ const deleteUser = async (req, res) => {
     });
 };
 
-module.exports = deleteUser;
+module.exports = deleteUsers;

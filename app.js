@@ -8,11 +8,16 @@ const PORT = process.env.PORT || 3000;
 const connectDB = require("./db/connectDb");
 const expressFileUploader = require("express-fileupload");
 
-const userRoute = require("./routes/userRoute");
-const adminRoute = require("./routes/adminRoute");
+const authRoutes = require("./routes/adminRoute");
+const adminRoutes = require("./routes/adminRoute");
+const userRoutes = require("./routes/userRoute");
 
 app.use(express.json());
 app.use(expressFileUploader({ useTempFiles: true }));
+
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 const start = async () => {
     try {
