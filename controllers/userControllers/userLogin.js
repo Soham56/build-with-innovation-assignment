@@ -19,7 +19,7 @@ const userLogin = async (req, res) => {
         { expiresIn: process.env.JWT_EXPIRESIN }
     );
 
-    res.status(StatusCodes.OK).json(token);
+    res.status(StatusCodes.OK).json({ userId: user._id, token });
 };
 
 module.exports = userLogin;

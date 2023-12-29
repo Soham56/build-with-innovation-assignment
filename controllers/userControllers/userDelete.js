@@ -3,8 +3,8 @@ const { BadRequestError } = require("../../errors");
 const User = require("../../models/user");
 
 const userDelete = async (req, res) => {
-    const { userId } = req.params;
-    const user = await User.findOneAndDelete({ userId });
+    const { id: userId } = req.params;
+    const user = await User.findOneAndDelete({ _id: userId });
     if (!user) throw new BadRequestError("User not found !");
 
     res.status(StatusCodes.OK).json({

@@ -10,8 +10,9 @@ const expressFileUploader = require("express-fileupload");
 
 const errorHandlerMiddleware = require("./middlewares/errorHandler");
 const routeNotExistsMiddleware = require("./middlewares/routeNotFound");
+const authenticateAdminMiddleware = require("./middlewares/authenticateAdmin");
 
-const authRoutes = require("./routes/adminRoute");
+const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoute");
 const userRoutes = require("./routes/userRoute");
 
@@ -20,7 +21,7 @@ app.use(expressFileUploader({ useTempFiles: true }));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/admin", [authenticateAdminMiddleware, adminRoutes]);
 app.use(errorHandlerMiddleware);
 app.use(routeNotExistsMiddleware);
 
