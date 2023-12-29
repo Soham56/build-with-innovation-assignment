@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 3000;
 const connectDB = require("./db/connectDb");
 const expressFileUploader = require("express-fileupload");
 
+const errorHandlerMiddleware = require("./middlewares/errorHandler");
+const routeNotExistsMiddleware = require("./middlewares/routeNotFound");
+
 const authRoutes = require("./routes/adminRoute");
 const adminRoutes = require("./routes/adminRoute");
 const userRoutes = require("./routes/userRoute");
@@ -18,6 +21,8 @@ app.use(expressFileUploader({ useTempFiles: true }));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use(errorHandlerMiddleware);
+app.use(routeNotExistsMiddleware);
 
 const start = async () => {
     try {
