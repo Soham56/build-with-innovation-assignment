@@ -126,24 +126,28 @@ npm start
         "profileImage": "upload a image file" // Optional
     }
     ```
+    -   **id in params must be user corresponding id**
 
 ### Delete User Account (User Specific)
 
 #### Endpoint: `/api/v1/user/:id`
 
 -   **Method:** `DELETE`
+    -   **id in params must be user corresponding id**
 
 ### Get All Users (Admin Only)
 
 #### Endpoint: `/api/v1/admin/getAllUsers`
 
 -   **Method:** `GET`
+-   **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
 
 ### Update Users (Admin Only)
 
 #### Endpoint: `/api/v1/admin/updateUsers`
 
 -   **Method:** `PATCH`
+-   **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
 -   **Body:**
     ```json
     {
@@ -154,20 +158,21 @@ npm start
         ]
     }
     ```
--   **Give inputs in the provided format. `userId` must be provided and admin can update `name`, `email` , `role` fields only.**
+    -   **Give inputs in the provided format. `userId` must be provided, and admin can update `name`, `email`, `role` fields only**.
 
 ### Delete Users (Admin Only)
 
 #### Endpoint: `/api/v1/admin/deleteUsers`
 
 -   **Method:** `DELETE`
+-   **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
 -   **Body:**
     ```json
     {
         "userIds": ["user_id1", "user_id2", "user_id3"]
     }
     ```
--   **Give inputs in the provided format.**
+    -   **Give inputs in the provided format.**
 
 ## Dependencies
 
